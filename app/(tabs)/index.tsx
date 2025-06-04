@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   const [number, setNumber] = useState(0);
@@ -49,20 +49,7 @@ export default function HomeScreen() {
           alignItems: "center",
           gap: 10,
         }}
-      >
-        <TextInput
-          style={style.TextInput}
-          placeholder="Enter Your Email"
-          keyboardType="email-address"
-        />
-        <Button
-          title="Submit"
-          onPress={() => {
-            // Submit logic here
-          }}
-          color="#111111"
-        />
-      </View>
+      ></View>
     </View>
   );
 }
@@ -86,29 +73,17 @@ const style = StyleSheet.create({
   },
   counterValue: {
     fontSize: 28,
+    color: "white",
+  },
 
-    color: "white",
-  },
-  TextInput: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginTop: 20,
-    paddingHorizontal: 10,
-    color: "white",
-    backgroundColor: "#333",
-    borderRadius: 5,
-  },
   ButtonGroup: {
     flexDirection: "row",
     gap: 10,
-
     marginTop: 20,
     width: "100%",
     justifyContent: "center",
     paddingHorizontal: 20,
     alignItems: "center",
-
     borderRadius: 10,
     paddingVertical: 10,
   },
