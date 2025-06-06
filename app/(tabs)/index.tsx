@@ -1,5 +1,11 @@
-import { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useState } from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
+import ChatScreen from "./screens/ChatScreen";
+import LoginScreen from "./screens/LoginScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function HomeScreen() {
   const [number, setNumber] = useState(0);
@@ -7,50 +13,58 @@ export default function HomeScreen() {
     return () => {};
   });
   return (
-    <View style={style.container}>
-      <Text style={style.headerText}>Hello world 👋 🌍!</Text>
-      <Image
-        source={require("../../assets/images/welcome.jpg")}
-        style={{ width: 200, height: 200 }}
-      />
-      <Text style={style.counterLable}>Current Number</Text>
-      <Text style={style.counterValue}>{number}</Text>
-      <View style={style.ButtonGroup}>
-        <Button
-          title="Increment"
-          onPress={() => {
-            setNumber(number + 1);
-            console.log("Incremented number:", number);
-          }}
-          color="#4CAF50"
+    <>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Chat" component={ChatScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <View style={style.container}>
+        <Text style={style.headerText}>Hello world 👋 🌍!</Text>
+        <Image
+          source={require("../../assets/images/welcome.jpg")}
+          style={{ width: 200, height: 200 }}
         />
-        <Button
-          title="Decrement"
-          onPress={() => {
-            setNumber(number - 1);
-            console.log("Decremented number:", number);
+        <Text style={style.counterLable}>Current Number</Text>
+        <Text style={style.counterValue}>{number}</Text>
+        <View style={style.ButtonGroup}>
+          <Button
+            title="Increment"
+            onPress={() => {
+              setNumber(number + 1);
+              console.log("Incremented number:", number);
+            }}
+            color="#4CAF50"
+          />
+          <Button
+            title="Decrement"
+            onPress={() => {
+              setNumber(number - 1);
+              console.log("Decremented number:", number);
+            }}
+            color="#F44336"
+          />
+          <Button
+            title="Reset"
+            onPress={() => {
+              clearTimeout();
+              setNumber(0);
+              console.log("Reset number to:", number);
+            }}
+            color="#2196F3"
+          />
+        </View>
+        <View
+          style={{
+            marginTop: 20,
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
           }}
-          color="#F44336"
-        />
-        <Button
-          title="Reset"
-          onPress={() => {
-            clearTimeout();
-            setNumber(0);
-            console.log("Reset number to:", number);
-          }}
-          color="#2196F3"
-        />
+        ></View>
       </View>
-      <View
-        style={{
-          marginTop: 20,
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-        }}
-      ></View>
-    </View>
+    </>
   );
 }
 
